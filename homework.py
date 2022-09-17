@@ -1,4 +1,3 @@
-import datetime
 import logging
 import os
 import time
@@ -9,9 +8,6 @@ import telegram
 from dotenv import load_dotenv
 
 load_dotenv()
-
-# d = datetime.date(2022,8,20)
-# unixtime = int(time.mktime(d.timetuple()))
 
 
 logging.basicConfig(
@@ -38,7 +34,7 @@ HOMEWORK_STATUSES = {
 
 
 def send_message(bot, message):
-    """ отправляет сообщение в Telegram чат"""
+    """отправляет сообщение в Telegram чат."""
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logger.info(
@@ -49,7 +45,7 @@ def send_message(bot, message):
 
 
 def get_api_answer(current_timestamp):
-    """"делает запрос к единственному эндпоинту API-сервиса. """
+    """делает запрос к единственному эндпоинту API-сервиса."""
     timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     homework_statuses = requests.get(
@@ -62,7 +58,7 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
-    """проверяет ответ API на корректность"""
+    """проверяет ответ API на корректность."""
     if type(response) is not dict:
         raise TypeError('Нет словоря в ответе API')
 
@@ -80,8 +76,8 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """ извлекает из информации о конкретной домашней работе
-    статус этой работы"""
+    """извлекает из информации о конкретной домашней работе
+    статус этой работы."""
     if 'homework_name' not in homework:
         raise KeyError('Отсутствует ключ "homework_name" в ответе API')
     if 'status' not in homework:
@@ -95,7 +91,7 @@ def parse_status(homework):
 
 
 def check_tokens():
-    """проверяет доступность переменных окружения, """
+    """проверяет доступность переменных окружения"""
     renvironment_variables = {
         'PRACTICUM': PRACTICUM_TOKEN,
         'TELEGRAM': TELEGRAM_TOKEN,
