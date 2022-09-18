@@ -10,6 +10,7 @@ from telegram import Bot
 from telegram.error import TelegramError
 
 import exceptions
+import endpoint
 
 load_dotenv()
 
@@ -25,7 +26,7 @@ PRACTICUM_TOKEN = os.getenv('PRAC_TOKEN')
 TELEGRAM_TOKEN = os.getenv('TG_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TG_CHAT_ID')
 TELEGRAM_RETRY_TIME = 600
-PRACTICUM_ENDPOINT = 'https://practicum.yandex.ru/api/user_api/homework_statuses/'
+
 HEADERS = {'Authorization': f'OAuth {PRACTICUM_TOKEN}'}
 
 
@@ -52,7 +53,7 @@ def get_api_answer(current_timestamp):
     timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     homework_statuses = requests.get(
-        PRACTICUM_ENDPOINT, headers=HEADERS, params=params
+        endpoint.PRACTICUM_ENDPOINT, headers=HEADERS, params=params
     )
     if homework_statuses.status_code != HTTPStatus.OK:
         logger.error("API возвращает код, отличный от 200")
