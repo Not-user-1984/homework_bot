@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 from telegram import Bot
 from telegram.error import TelegramError
 
-import exceptions
 import endpoint
+import exceptions
 
 load_dotenv()
 
