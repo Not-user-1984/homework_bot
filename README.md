@@ -1,4 +1,11 @@
 # Homework_bot
+
+#### **Стек**
+![python version](https://img.shields.io/badge/Python-3.7-green)
+
+[python-telegram-bot](https://docs.python-telegram-bot.org/en/stable/)
+
+
 Бот для Телеграмма работает с Домашкой Яндекс.Практикум, получает обновления проверки последней домашней работы.<br>
 Получить PRACTICUM_TOKEN: https://oauth.yandex.ru/authorize?response_type=token&client_id=1d0b9dd4d652455a9eb710d450ff456a
 
